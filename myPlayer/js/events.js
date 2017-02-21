@@ -34,7 +34,7 @@ $(".headR").on("click",function(e){
 
 function getSong(){
 	$.ajax({
-		url:'http://api.jirengu.com/fm/getChannels.php',
+		url:'//api.jirengu.com/fm/getChannels.php',
 		type:'get',
 		dataType:'json',
 		success:function(data){
