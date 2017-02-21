@@ -39,6 +39,7 @@ function getSong(){
 		dataType:'json',
 		success:function(data){
 			dealWith(data.channels);
+			console.log(data);
 		},
 		error:function(){
 			console.log('error');
@@ -48,5 +49,11 @@ function getSong(){
 	function dealWith(data){
 		var str='';
 		$('.styleList').empty();
+		data.forEach(function(e,i,a){
+			str+='<p data-chanel="'+e['channel_id'];
+			str+='">'+e.name+'</p>';
+		});
+		// $ul=$('ul').append($(str));
+		$('.styleList').append($(str));
 	}
 }
