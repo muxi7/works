@@ -143,7 +143,7 @@ main{
 	animation:15s around linear infinite;
 	transform-origin: 50% 50%;
 }
--webkit-@keyframes around {
+@-webkit-keyframes around {
 	0% {-webkit-transform:rotate(0);transform:rotate(0);}
 	50% {-webkit-transform:rotate(180deg);transform:rotate(180deg);}
 	100% {-webkit-transform:rotate(360deg);transform:rotate(360deg);}
