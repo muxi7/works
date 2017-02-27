@@ -2,10 +2,14 @@
 $('.play').on("click",function(){
 	$(this).hide();
 	$('.pause').show();
+	$('.needle').addClass('needleOn');
+	$('.pic').addClass('picAnimate');
 })
 $('.pause').on("click",function(){
 	$(this).hide();
 	$('.play').show();
+	$('.needle').removeClass('needleOn');
+	$('.pic').removeClass('picAnimate');
 })
 
 //点击歌曲类别列表与歌词页面切换
@@ -34,7 +38,7 @@ $(".headR").on("click",function(e){
 
 function getSong(){
 	$.ajax({
-		url:'//api.jirengu.com/fm/getChannels.php',
+		url:'http://api.jirengu.com/fm/getChannels.php', //如何在https页面下请求http的资源？？？
 		type:'get',
 		dataType:'json',
 		success:function(data){
@@ -53,7 +57,48 @@ function getSong(){
 			str+='<p data-chanel="'+e['channel_id'];
 			str+='">'+e.name+'</p>';
 		});
-		// $ul=$('ul').append($(str));
 		$('.styleList').append($(str));
 	}
+}
+
+//styleList侧边栏事件代理,点击选项切换频道
+$(".styleList").on("click",'p',function(e){
+	e.stopParpagation();
+	e.preventDefaule();
+	
+
+})
+
+//以下是请求歌曲文件的
+function getSongInfo(channel){
+	var channel=channel || 'public_tuijian_spring';
+	$.ajax({
+		url:'http://api.jirengu.com/fm/getSong.php',
+		type:'get',
+		dataType:'json',
+		data:{
+			channel:channel
+		},
+		success:function(data){
+			// console.log(data);
+			fillInfo(data);
+		},
+		error:function(){
+			console.log('error');
+		}
+	})
+
+}
+function fillInfo(data){
+	console.log(data.song[0].title)
+	console.log(data.song[0].artist)
+	console.log(data.song[0].lrc)
+	console.log(data.song[0].picture)
+	console.log(data.song[0].url)
+	$('.songName').html(data.song[0].title)
+	$('.artist').html(data.song[0].artist)
+	$('.pic>img').attr('src',data.song[0].picture)
+	$('main>audio').attr('src',data.song[0].url)
+	$('.lyric').html('src',data.song[0].lrc)
+
 }

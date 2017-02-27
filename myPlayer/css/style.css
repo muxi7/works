@@ -65,6 +65,24 @@ main{
 	height:380px;
 	background-color:rgba(177,177,177,0.5);
 	text-align:center;
+	position: relative;
+}
+.needle{
+	position: absolute;
+	width:110px;
+	height:160px;
+	top:-20px;
+	left:150px;
+	background-image:url(../img/needle.png);
+	background-size:cover;
+	z-index: 10;
+	transform: rotate(-10deg);
+	transform-origin:0 0;
+	transition:0.5s;
+}
+.needleOn{
+	transform:rotate(4deg);
+	transition:0.5s;
 }
 .songName{
 	padding:8px 0 9px 0;
@@ -82,10 +100,15 @@ main{
 	overflow: auto;
 	background-color:rgba(0,0,0,0.75);
 	color:#75b12c;
+	z-index: 200;
 }
-.styleList>ul>li{
+.styleList>p{
 	border-bottom:1px solid;
 	padding:5px;
+	cursor:pointer;
+}
+.styleList>p:hover{
+	background-color:rgba(255,255,255,0.75);
 }
 .lyric{
 	position:absolute;
@@ -97,6 +120,7 @@ main{
 	background-color:rgba(0,0,0,0.5);
 	text-align:center;
 	color:#bbb;
+	z-index: 200;
 }
 .action{
 	color:#75b12c;
@@ -105,6 +129,16 @@ main{
 .pic{
 	position: relative;
 	height:250px;
+	transition:1s;
+}
+.picAnimate{
+	animation:15s around linear infinite;
+	transform-origin: 50% 50%;
+}
+@keyframes around {
+	0% {transform:rotate(0);}
+	50% {transform:rotate(180deg);}
+	100% {transform:rotate(360deg);}
 }
 .dataPic{
 	width:190px;
