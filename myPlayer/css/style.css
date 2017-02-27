@@ -132,8 +132,14 @@ main{
 	transition:1s;
 }
 .picAnimate{
+	-webkit-animation:15s around linear infinite;
 	animation:15s around linear infinite;
 	transform-origin: 50% 50%;
+}
+-webkit-@keyframes around {
+	0% {transform:rotate(0);}
+	50% {transform:rotate(180deg);}
+	100% {transform:rotate(360deg);}
 }
 @keyframes around {
 	0% {transform:rotate(0);}
