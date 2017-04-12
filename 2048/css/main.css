@@ -1,0 +1,99 @@
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+header{
+	width:100%;
+	margin: 50px auto;
+	text-align: center;
+}
+header>h1{
+	margin:20px 0;
+	font-size:40px;
+}
+header>.num{
+	display:inline-block;
+	width:250px;
+	padding:10px 30px;
+	font-size:25px;
+	font-weight:bold;
+}
+header>.resetBtn{
+	text-decoration:none;
+	display:inline-block;
+	margin-left:80px;
+	padding:10px 30px;
+	border-radius:20px;
+	outline: none;
+	background-color:#a0c4e8;
+	color:white;
+	font-size:20px;
+}
+header>.resetBtn:hover{
+	box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+
+main{
+	position:relative;
+	display:-webkit-flex;
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+	/*align-content: stretch;*/
+	width:460px;
+	height:460px;
+	padding:6px;
+	
+	margin:10px auto;
+	border-radius:10px;
+	background-color:#bcaea1;
+}
+.grid{
+	width:100px;
+	height:100px;
+	background-color:#cdbeb4;
+	margin:6px;
+	border-radius:6px;
+	text-align:center;
+	line-height: 100px;
+	font-weight:bold;
+}
+
+#test{
+	position:absolute;
+	width:100px;
+	height:100px;
+	top:12px;
+	left:12px;
+	background-color:green;
+	border-radius:6px;
+}
+
+.number-cell{
+	position:absolute;
+	text-align:center;
+	line-height:100px;
+	font-weight:bold;
+	border-radius:6 px;
+	font-family:arial;
+}
+
+.gameover{
+	width:460px;
+	height:460px;
+	position:absolute;
+	top:0;
+	left:0;
+	background-color:rgba(0,0,0,0.25);
+	z-index: 100;
+
+}
+.message{
+	color:red;
+	font-size:20px;
+	line-height:100px;
+	padding:50px 10px 0 10px;
+	font-family:arial;
+	text-align:center;
+}
