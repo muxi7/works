@@ -1,4 +1,4 @@
-//var documentWidth=window.screen.availWidth;
+var documentWidth=window.screen.availWidth;
 var gridContailWidth=460; 
 var cellSideLength=100; 
 var cellSpace=12;  
