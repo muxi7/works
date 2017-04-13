@@ -3,6 +3,12 @@ var score=0;
 var hasConflicted = [];
 var lock=false;
 
+var startX=0,
+    startY=0,
+    endX=0,
+    endY=0;
+
+
 
 $(function(){
   newGame();
@@ -152,6 +158,7 @@ function nospace(board){
 }
 
 
+//分别向上下左右移动的操作
 function moveLeft(){
   if(!canMoveLeft(board)){
     return false;
@@ -190,7 +197,7 @@ function moveLeft(){
   return true;
 }
 
-//分别向上下左右移动的操作
+
 function moveRight(){
   if(!canMoveRight(board)){
     return false;
@@ -205,7 +212,7 @@ function moveRight(){
             board[i][j]=0;
             break;
           }
-          else if(board[i][k] == board[i][j] && noBlockHorizontal(i,k,j,board) && !hasConflicted[i][k]){
+          else if(board[i][k] == board[i][j] && noBlockHorizontal(i,j,k,board) && !hasConflicted[i][k]){
             showMoveAnimation(i,j,i,k);
             board[i][k] += board[i][j];
             board[i][j] = 0;
@@ -329,3 +336,44 @@ $(document).on('keydown',function(e){
   e.preventDefault();
 })
 
+//兼容移动端触摸操作
+document.addEventListener('touchstart',function(e){
+  startX=e.touch[0].pageX;
+  startY=e.touch[0].pageY;
+})
+document.addEventListener('touchend',function(e){
+  lock=true;
+  endX=e.changedTouches[0].pageX;
+  endY=e.changedTouches[0].pageY;
+
+  var detalX=endX-startX;
+  var detalY=endY-startY;
+
+  if(Math.abs(detalX)<0.1*documentWidth && Math.abs(detalY)<0.1*documentWidth){
+    return 
+  }
+  if(Math.abs(detalX)>=Math.abs(detalY)){
+    if(detalX>0){
+      if(moveRight()){
+        setTimeout(showGameOver,300);
+      }
+    }else{
+      if(moveLeft()){
+        setTimeout(showGameOver,300);
+      }
+    }
+  }else{
+    if(detalY>0){
+      if(moveDown()){
+        setTimeout(showGameOver,300);
+      }
+    }else{
+      if(moveUp()){
+        setTimeout(showGameOver,300);
+      }
+    }
+  }
+});
+document.addEventListener('touchmove',function(e){
+  e.preventDefault();
+})
