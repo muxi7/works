@@ -338,8 +338,8 @@ $(document).on('keydown',function(e){
 
 //兼容移动端触摸操作
 document.addEventListener('touchstart',function(e){
-  startX=e.touch[0].pageX;
-  startY=e.touch[0].pageY;
+  startX=e.touches[0].pageX;
+  startY=e.touches[0].pageY;
 })
 document.addEventListener('touchend',function(e){
   lock=true;
