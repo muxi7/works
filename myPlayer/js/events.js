@@ -88,8 +88,11 @@ function nextSong(channel){
 			letPlay=false;
 		}
 	})
-
 }
+
+function reset(){
+	
+} 
 
 function preSong(){
 	songOff();
@@ -253,11 +256,12 @@ function timeMove(){
   $('audio').on('play',function(){
   	moveTime=setInterval(function(){
   		var currentTime=$('audio')[0].currentTime;
-  		var precent=parseInt(currentTime * 100 / endTime) / 100;
+  		var precent=parseInt(parseInt(currentTime) * 100 / parseInt(endTime)) / 100;
+  		console.log(parseInt(currentTime));
 	    $('.currentTime').text(timeFormat(currentTime));
-	    $('.bar').width(barWidth*precent);
-	    $('.proBall').css('left',barWidth*precent+'px');
-	  },1000);
+	    $('.bar').css({'width':barWidth*precent+'px'});
+	    $('.proBall').css({'left':barWidth*precent+'px'});
+	  });
   });
 
   $('audio').on('pause',function(){

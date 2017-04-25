@@ -16,6 +16,8 @@ $(function(){
 
 //点击按钮重新开始游戏
 function newGame(){
+//在点击新游戏时，需要将全局变量score置0，不然在下次游戏中score中存储的值会延续到下次新游戏；
+  score=0; 
   init();
   updateBoardView();
   generateANum();
