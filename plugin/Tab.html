@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Tab插件</title>
+	<style type="text/css">
+ 	*{padding:0;margin:0;}
+ 	body{background-color:#323232;font-size:12px;}
+ 	p{color:#fff;margin-bottom:10px;}
+ 	li{list-style: none;}
+	</style>
+	<link type="text/css" rel="stylesheet" href="./css/tab.css">
+	<script type="text/javascript" src="./js/public/jquery-2.1.0.js"></script>
+</head>
+<body>
+	<div class="tab">
+		<p>1.未配置任何参数，使用默认的配置参数</p>
+		<ul class="tab-nav">
+			<li class="active">新闻</li>
+			<li>军事</li>
+			<li>娱乐</li>
+			<li>科技</li>
+		</ul>
+		<div class="content-wrap">
+			<div class="content-item current">新闻</div>
+			<div class="content-item">军事</div>
+			<div class="content-item">娱乐</div>
+			<div class="content-item">科技</div>
+		</div>
+	</div>
+
+	<div class="tab" data-config='{
+									"triggerType":"mouseover",
+									"invoke":2,
+									"auto":3000
+								  }'>
+		<p>2.配置mouseover触发事件和初始显示第3个tab</p>
+		<ul class="tab-nav">
+			<li class="active">电视剧</li>
+			<li>动漫</li>
+			<li>电影</li>
+			
+		</ul>
+		<div class="content-wrap">
+			<div class="content-item current">电视剧</div>
+			<div class="content-item">动漫</div>
+			<div class="content-item">电影</div>
+		</div>
+	</div>
+
+	<div class="tab" data-config='{
+									"triggerType":"click",
+									"effect":"fade",
+									"invoke":4,
+									"auto":3000
+								  }'>
+		<p>3.配置mouseover触发事件和初始显示第4个tab，使用淡入淡出效果，间隔3秒自动轮播</p>
+		<ul class="tab-nav">
+			<li class="active">新闻</li>
+			<li>军事</li>
+			<li>娱乐</li>
+			<li>科技</li>
+		</ul>
+		<div class="content-wrap">
+			<div class="content-item current">新闻</div>
+			<div class="content-item">军事</div>
+			<div class="content-item">娱乐</div>
+			<div class="content-item">科技</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="./js/tab.js"></script>
+	<script>
+	$(function(){
+		var tab1=new Tab($('.tab').eq(0));
+		var tab2=new Tab($('.tab').eq(1));
+		var tab3=new Tab($('.tab').eq(2));
+	});
+	</script>
+</body>
+</html>

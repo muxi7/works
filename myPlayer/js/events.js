@@ -241,6 +241,9 @@ function lyricBoxMove(time){
 
 //当音频未完全加载时，音频对象的duration属性为NaN；
 function timeInit(){
+	$('.currentTime').text('00:00');
+	$('.bar').css({'width':'0px'});
+	$('.proBall').css({'left':'0px'});
   $('audio').on('canplay',function(){
     $('.endTime').html(timeFormat($('audio')[0].duration));
     timeMove();
@@ -248,19 +251,26 @@ function timeInit(){
 
 }
 
+
+
 function timeMove(){
   var endTime=$('audio')[0].duration;
   var barWidth=$('.barWap').width();
-  var moveTime;
+  var moveTime,currentTime;
+  var prePrecent=0;//上一次的百分比数；
 
   $('audio').on('play',function(){
   	moveTime=setInterval(function(){
-  		var currentTime=$('audio')[0].currentTime;
-  		var precent=parseInt(parseInt(currentTime) * 100 / parseInt(endTime)) / 100;
-  		console.log(parseInt(currentTime));
-	    $('.currentTime').text(timeFormat(currentTime));
-	    $('.bar').css({'width':barWidth*precent+'px'});
-	    $('.proBall').css({'left':barWidth*precent+'px'});
+  		currentTime=$('audio')[0].currentTime;
+  		var precent=Math.floor(currentTime/endTime*100); //当前百分比数
+//由于此处进度条会形成鬼畜，在这里做一个限定，百分比数变大，就往前进
+  		if(precent-prePrecent>0 && precent-prePrecent<2){
+  			prePrecent=precent; 
+		    //console.log(barWidth,precent,parseInt(barWidth*precent/100));
+		    $('.bar').css({'width':parseInt(barWidth*prePrecent/100)+'px'});
+		    $('.proBall').css({'left':parseInt(barWidth*prePrecent/100)+'px'});
+  		}
+  		$('.currentTime').text(timeFormat(currentTime));
 	  });
   });
 
