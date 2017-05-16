@@ -108,6 +108,21 @@
     }
 
   }
+//方式二：传入数组，依次进行new操作；
+  Tab.init=function(tabs){
+    var _this_=this;
+    tabs.each(function(){
+      new _this_($(this));
+    })
+  };
+
+//方式三：注册成jQuery插件方式；
+  $.fn.tab=function(){
+    this.each(function(){
+      new Tab($(this));
+    })
+    return this;
+  };
 
   window.Tab=Tab;
 

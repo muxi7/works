@@ -72,9 +72,16 @@
 	<script type="text/javascript" src="./js/tab.js"></script>
 	<script>
 	$(function(){
-		var tab1=new Tab($('.tab').eq(0));
-		var tab2=new Tab($('.tab').eq(1));
-		var tab3=new Tab($('.tab').eq(2));
+	//方式一：
+		// var tab1=new Tab($('.tab').eq(0));
+		// var tab2=new Tab($('.tab').eq(1));
+		// var tab3=new Tab($('.tab').eq(2));
+
+	//方式二：
+		//Tab.init($('.tab'));
+		
+	//方式三：
+		$('.tab').tab();
 	});
 	</script>
 </body>
