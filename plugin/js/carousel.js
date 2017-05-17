@@ -12,8 +12,8 @@
     this.curIdx=0; //当前图片在数组中位置；
     this.isAnimate=false; //判断是够正在执行动画；
     this.timer=null;  //实现自动轮播的计时器；
+    this.flag=false;  //判断是触发了mouseenter事件还是mouseleave()事件；解决自动轮播和手动切换的时候造成多余的setInternal;
 
-    console.log(this.preBtn,this.nextBtn);
     this.picList.css({'width':this.picCount*this.picwidth});
 
     this.preBtn.on('click',function(e){
@@ -37,18 +37,20 @@
 
     this.playAuto();
 
-    this.carousel.on('mouseenter',function(e){
-      e.stopPropagation();
+    this.carousel.on('mouseenter',function(){
+      //e.stopPropagation();
+      _this.flag=true;
       _this.stopAuto();
-    }).on('mouseleave',function(e){
-      e.stopPropagation();
+    }).on('mouseleave',function(){
+      //e.stopPropagation();
+      _this.flag=true;
       _this.playAuto();
     });
 
   }
 
   Carousel.prototype={
-
+  //向前滑动
     playPre:function(step){
       var _this=this;
       var index=step || 1;
@@ -63,12 +65,14 @@
           _this.curIdx=(_this.picCount+_this.curIdx-index)%_this.picCount;
           _this.setList();
           _this.isAnimate=false;
-          _this.playAuto();
+          if(!_this.flag){
+            _this.playAuto();
+          };
         })
       }
 
     },
-
+  //向后滑动
     playNext:function(step){
       var _this=this;
       var index=step || 1;
@@ -83,11 +87,13 @@
           _this.curIdx=(_this.curIdx+index)%_this.picCount;
           _this.setList();
           _this.isAnimate=false;
-          _this.playAuto();
+          if(!_this.flag){
+            _this.playAuto();
+          };
         });
       };
     },
-    
+  //小圆点的隧动切换
     setList:function(){
       this.barList.children().removeClass('active').eq(this.curIdx).addClass('active');
     },
@@ -98,8 +104,7 @@
       },2000);
     },
     stopAuto:function(){ 
-      clearInterval(this.timer);
-      this.timer=null;
+      window.clearInterval(this.timer);
     }
   };
 
