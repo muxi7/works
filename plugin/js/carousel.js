@@ -35,15 +35,15 @@
 
     });
 
-    this.playAuto();
+//    this.playAuto();
 
-    this.carousel.on('mouseenter',function(e){
-      e.stopPropagation();
-      _this.stopAuto();
-    }).on('mouseleave',function(e){
-      e.stopPropagation();
-      _this.playAuto();
-    });
+//     this.carousel.on('mouseenter',function(e){
+//       e.stopPropagation();
+//       _this.stopAuto();
+//     }).on('mouseleave',function(e){
+//       e.stopPropagation();
+//       _this.playAuto();
+//     });
 
   }
 
