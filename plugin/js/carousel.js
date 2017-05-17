@@ -35,8 +35,9 @@
 
     });
 
-    this.playAuto();
+//    this.playAuto();
 
+<<<<<<< HEAD
     this.carousel.on('mouseenter',function(){
       //e.stopPropagation();
       _this.flag=true;
@@ -46,6 +47,15 @@
       _this.flag=true;
       _this.playAuto();
     });
+=======
+//     this.carousel.on('mouseenter',function(e){
+//       e.stopPropagation();
+//       _this.stopAuto();
+//     }).on('mouseleave',function(e){
+//       e.stopPropagation();
+//       _this.playAuto();
+//     });
+>>>>>>> cba3afec7cc15378db21b5a2ed6b9d4d97fcd9ef
 
   }
 
