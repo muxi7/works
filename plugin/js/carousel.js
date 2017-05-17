@@ -9,17 +9,19 @@
     this.pics=this.picList.children();
     this.picCount=this.pics.size();
     this.picwidth=this.pics.width();
-    this.curIdx=0;
-    this.isAnimate=false;
-    this.timer=null;
+    this.curIdx=0; //当前图片在数组中位置；
+    this.isAnimate=false; //判断是够正在执行动画；
+    this.timer=null;  //实现自动轮播的计时器；
 
     console.log(this.preBtn,this.nextBtn);
     this.picList.css({'width':this.picCount*this.picwidth});
 
-    this.preBtn.on('click',function(){
+    this.preBtn.on('click',function(e){
+      e.preventDefault();
       _this.playPre();
     });
-    this.nextBtn.on('click',function(){
+    this.nextBtn.on('click',function(e){
+      e.preventDefault();
       _this.playNext();
     });
     this.barList.children().on('click',function(){
@@ -33,6 +35,8 @@
 
     });
 
+    this.playAuto();
+
     this.carousel.on('mouseenter',function(e){
       e.stopPropagation();
       _this.stopAuto();
@@ -41,11 +45,10 @@
       _this.playAuto();
     });
 
-    this.playAuto();
-
   }
 
   Carousel.prototype={
+
     playPre:function(step){
       var _this=this;
       var index=step || 1;
@@ -65,6 +68,7 @@
       }
 
     },
+
     playNext:function(step){
       var _this=this;
       var index=step || 1;
@@ -83,19 +87,20 @@
         });
       };
     },
+    
     setList:function(){
       this.barList.children().removeClass('active').eq(this.curIdx).addClass('active');
     },
     playAuto:function(){
       var _this=this;
-      this.timer=setInterval(function(){
+      this.timer=window.setInterval(function(){
         _this.playNext();
       },2000);
     },
-    stopAuto:function(){
+    stopAuto:function(){ 
       clearInterval(this.timer);
+      this.timer=null;
     }
-
   };
 
   window.Carousel=Carousel;
