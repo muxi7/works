@@ -43,7 +43,7 @@
       _this.stopAuto();
     }).on('mouseleave',function(){
       //e.stopPropagation();
-      _this.flag=true;
+      _this.flag=false;
       _this.playAuto();
     });
 
